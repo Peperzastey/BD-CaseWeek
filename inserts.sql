@@ -1,12 +1,12 @@
-INSERT INTO CITIES (CITIES_id, CITIES_name)
+INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (1, 'Warszawa');
-INSERT INTO CITIES (CITIES_id, CITIES_name)
+INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (2, 'Krakow');
-INSERT INTO CITIES (CITIES_id, CITIES_name)
+INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (3, 'Rzeszow');
-INSERT INTO CITIES (CITIES_id, CITIES_name)
+INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (4, 'Gdansk');
-INSERT INTO CITIES (CITIES_id, CITIES_name)
+INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (5, 'Lublin');
 
 INSERT INTO DEGREES (DEG_id, DEG_name)
@@ -43,6 +43,13 @@ VALUES (2, 'Politechnika Gdanska', 4);
 INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
 VALUES (3, 'Politechnika Lubelska', 5);
 
+INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
+VALUES (1, 'Deloitte', '21-435 Warszawa', '532654424', 'deloitte@example.com');
+INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
+VALUES (2, 'Comarch', '54-321 Warszawa', '532432557', 'comarch@example.com');
+INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
+VALUES (3, 'Samsung', '65-234 Warszawa', '543677664', 'samsung@example.com');
+
 INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
 VALUES (PERSONS_SEQ.nextval, 'Tomasz', 'Nowak', '333222111', 't.nowak@example.com');
 INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
@@ -56,6 +63,8 @@ VALUES (PERSONS_SEQ.nextval, 'Marcin', 'Kula', '746204542', 'm.kula@example.com'
 INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
 VALUES (PERSONS_SEQ.nextval, 'Fryderyk', 'Malinowski', '846246432', 'f.malinowski@example.com');
 
+-- [TODO] change STUD_id's to retrieve the latest P_id inserted into the PERSONS table from PERSONS_SEQ
+-- [TODO] add transaction linking together insertions into PERSONS and STUDENTS
 INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
 VALUES (1, 'EiTI', 3, 'Informatyka', '453643', null, 1);
 INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
@@ -63,13 +72,8 @@ VALUES (3, 'EiTI', 3, 'Informatyka', '423123', null, 1);
 INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
 VALUES (6, 'EiTI', 3, 'Informatyka', '123456', null, 1);
 
-INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
-VALUES (1, 'Deloitte', '21-435 Warszawa', '532654424', 'deloitte@example.com');
-INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
-VALUES (2, 'Comarch', '54-321 Warszawa', '532432557', 'comarch@example.com');
-INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
-VALUES (3, 'Samsung', '65-234 Warszawa', '543677664', 'samsung@example.com');
-
+-- [TODO] change SPK_id's to retrieve the latest P_id inserted into the PERSONS table from PERSONS_SEQ
+-- [TODO] add transaction linking together insertions into SPEAKERS and STUDENTS
 INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_company)
 VALUES (2, 5, 10, null, 3);
 INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_company)
@@ -85,11 +89,11 @@ INSERT INTO LOCAL_COMMITTEES (LC_id, LC_tel, LC_email, LC_uni)
 VALUES (3, '644325466', 'com3@example.com', 3);
 
 INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (1, 'Pisanie CV', TO_DATE('21-03-17', 'DD-MM-YY'), 1, 3, 1, 'medium');
+VALUES (WORKSHOPS_SEQ.nextval, 'Pisanie CV', TO_DATE('21-03-17', 'DD-MM-YY'), 1, 3, 1, 'medium');
 INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (2, 'Programowanie w C++', TO_DATE('28-03-17', 'DD-MM-YY'), 4, 2, 2, 'large');
+VALUES (WORKSHOPS_SEQ.nextval, 'Programowanie w C++', TO_DATE('28-03-17', 'DD-MM-YY'), 4, 2, 2, 'large');
 INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (3, 'Bazy danych Oracle', TO_DATE('2-04-17', 'DD-MM-YY'), 3, 1, 3, 'large');
+VALUES (WORKSHOPS_SEQ.nextval, 'Bazy danych Oracle', TO_DATE('2-04-17', 'DD-MM-YY'), 3, 1, 3, 'large');
 
 INSERT INTO ATTENDS (STUD_ID, WS_ID)
 VALUES (1, 2);
