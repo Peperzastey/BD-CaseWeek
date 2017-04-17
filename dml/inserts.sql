@@ -1,6 +1,8 @@
 -- This is an exemplary script for CaseWeek database populating.
 
 INSERT INTO CITIES (CITY_id, CITY_name)
+VALUES (0, 'N/I');
+INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (1, 'Warszawa');
 INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (2, 'Krakow');
@@ -62,6 +64,8 @@ INSERT INTO ROOM_SIZES (RSZ_type, RSZ_seat_min, RSZ_seat_max)
 VALUES ('large', 31, 90);
 COMMIT WORK;
 
+INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
+VALUES (0, 'None', 0);
 INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
 VALUES (1, 'Politechnika Warszawska', 1);
 INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
