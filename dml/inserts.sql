@@ -22,7 +22,8 @@ INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (7, 'Szczecin') ;
 INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (11, 'Poznan');
-COMMIT WORK;											-- end of current transaction
+COMMIT WORK;							-- end of current transaction
+
 
 -- Add degrees:
 
@@ -48,6 +49,7 @@ INSERT INTO DEGREES (DEG_id, DEG_name)
 VALUES (10, 'prof.');
 COMMIT WORK;
 
+
 -- Add room settings:
 
 INSERT INTO ROOM_SETTINGS (RS_id, RS_type)
@@ -62,6 +64,7 @@ INSERT INTO ROOM_SETTINGS (RS_id, RS_type)
 VALUES (4, 'Bez stolow');
 COMMIT WORK;
 
+
 -- Add room sizes:
 
 INSERT INTO ROOM_SIZES (RSZ_type, RSZ_seat_min, RSZ_seat_max)
@@ -71,6 +74,7 @@ VALUES ('medium', 11, 30);
 INSERT INTO ROOM_SIZES (RSZ_type, RSZ_seat_min, RSZ_seat_max)
 VALUES ('large', 31, 90);
 COMMIT WORK;
+
 
 -- Add universities:
 
@@ -98,6 +102,7 @@ INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
 VALUES (11, 'Politechnika Poznanska', 11);
 COMMIT WORK;
 
+
 -- Add companies:
 
 INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
@@ -115,6 +120,7 @@ VALUES (6, 'Comtegra', '30-303 Piaseczno', '188523102', 'comtegra@example.com');
 INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
 VALUES (7, 'MI5', '99-007 Londyn', '007007007', 'hq@topsecret.co.uk');
 COMMIT WORK;
+
 
 -- Add speakers:
 
@@ -160,6 +166,7 @@ INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_c
 VALUES (PERSONS_SEQ.currval, 8, 2, 11, 6);
 COMMIT WORK;
 
+
 -- Add students: 
 
 SET TRANSACTION NAME 'ADD_STUDENT__TOMASZ_NOWAK';
@@ -204,6 +211,7 @@ INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_nu
 VALUES (PERSONS_SEQ.currval, 'Elektryczny', 5, 'Urzadzenia elektryczne', '250987', 'Golarki', 5);
 COMMIT WORK; 
 
+
 -- Add LCs:
 
 INSERT INTO LOCAL_COMMITTEES (LC_id, LC_tel, LC_email, LC_uni)
@@ -217,6 +225,7 @@ VALUES (4, '456875222', 'com4@example.com', 4);
 INSERT INTO LOCAL_COMMITTEES (LC_id, LC_tel, LC_email, LC_uni)
 VALUES (5, '238975433', 'com5@example.com', 5);
 COMMIT WORK;
+
 
 -- Connect LCs with contacted companies:
 
@@ -236,31 +245,32 @@ INSERT INTO CONTACTS (LC_id, COM_id)
 VALUES (1, 7); 
 COMMIT WORK; 
 
--- Add workshops:
 
-INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (WORKSHOPS_SEQ.nextval, 'Pisanie CV', TO_DATE('21-03-17', 'DD-MM-YY'), 1, 3, 1, 'medium');
+-- Add workshops, uses autonumber:
+
+INSERT INTO WORKSHOPS (WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
+VALUES ('Pisanie CV', TO_DATE('21-03-17', 'DD-MM-YY'), 1, 3, 1, 'medium');
 COMMIT WORK;
 
-INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (WORKSHOPS_SEQ.nextval, 'Programowanie w C++', TO_DATE('28-03-17', 'DD-MM-YY'), 4, 2, 2, 'large');
+INSERT INTO WORKSHOPS (WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
+VALUES ('Programowanie w C++', TO_DATE('28-03-17', 'DD-MM-YY'), 4, 2, 2, 'large');
 COMMIT WORK;
 
-INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (WORKSHOPS_SEQ.nextval, 'Bazy danych Oracle', TO_DATE('2-04-17', 'DD-MM-YY'), 3, 1, 3, 'large');
+INSERT INTO WORKSHOPS (WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
+VALUES ('Bazy danych Oracle', TO_DATE('2-04-17', 'DD-MM-YY'), 3, 1, 3, 'large');
 COMMIT WORK;
 
-INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (WORKSHOPS_SEQ.nextval, 'Fajne bazy danych', TO_DATE('2-04-19', 'DD-MM-YY'), 35, 0, 5, 'large');
+INSERT INTO WORKSHOPS (WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
+VALUES ('Fajne bazy danych', TO_DATE('2-04-19', 'DD-MM-YY'), 35, 0, 5, 'large');
 COMMIT WORK;
 
-INSERT INTO WORKSHOPS (WS_id, WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
-VALUES (WORKSHOPS_SEQ.nextval, 'Bezpieczenstwo sieci i systemow', TO_DATE('2-04-25', 'DD-MM-YY'), 18, 4, 4, 'medium');
+INSERT INTO WORKSHOPS (WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organizer, WS_room_type)
+VALUES ('Bezpieczenstwo sieci i systemow', TO_DATE('2-04-25', 'DD-MM-YY'), 18, 4, 4, 'medium');
 COMMIT WORK;
 
 
 -- Assign speakers to lead given workshops:
--- NOTE: For this to work, insertions into the PERSONS table must be executed in the order presented in this script,
+-- NOTE: For this to work, insertions into the PERSONS table (when inserting into SPEAKERS) must be executed in the order presented in this script,
 --       with the sequence in its initial state (initial value = 1, increment = 1) before the first insert  !!!
 
 INSERT INTO LEADS (SPK_id, WS_id)
@@ -293,8 +303,8 @@ COMMIT WORK;
 
 
 -- Enroll students for workshops:
--- NOTE: For this to work, insertions into the PERSONS table must be executed in the order presented in this script,
---       with the sequence in state past 3 references to nextval (next value = 4, increment = 1) before the first insert  !!!
+-- NOTE: For this to work, insertions into the PERSONS table (when inserting into STUDENTS) must be executed in the order presented in this script,
+--       with the sequence in state past 6 references to nextval (next value = 7, increment = 1) before the first insert  !!!
 
 INSERT INTO ATTENDS (STUD_ID, WS_ID)
 VALUES (7, 2);
