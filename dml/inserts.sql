@@ -1,5 +1,7 @@
 -- This is an exemplary script for CaseWeek database populating.
 
+-- Add cities:
+
 INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (0, 'N/I');
 INSERT INTO CITIES (CITY_id, CITY_name)
@@ -21,6 +23,8 @@ VALUES (7, 'Szczecin') ;
 INSERT INTO CITIES (CITY_id, CITY_name)
 VALUES (11, 'Poznan');
 COMMIT WORK;											-- end of current transaction
+
+-- Add degrees:
 
 INSERT INTO DEGREES (DEG_id, DEG_name)
 VALUES (0, 'none');
@@ -44,6 +48,8 @@ INSERT INTO DEGREES (DEG_id, DEG_name)
 VALUES (10, 'prof.');
 COMMIT WORK;
 
+-- Add room settings:
+
 INSERT INTO ROOM_SETTINGS (RS_id, RS_type)
 VALUES (0, 'Dowolne');
 INSERT INTO ROOM_SETTINGS (RS_id, RS_type)
@@ -56,6 +62,8 @@ INSERT INTO ROOM_SETTINGS (RS_id, RS_type)
 VALUES (4, 'Bez stolow');
 COMMIT WORK;
 
+-- Add room sizes:
+
 INSERT INTO ROOM_SIZES (RSZ_type, RSZ_seat_min, RSZ_seat_max)
 VALUES ('small', 1, 10);
 INSERT INTO ROOM_SIZES (RSZ_type, RSZ_seat_min, RSZ_seat_max)
@@ -63,6 +71,8 @@ VALUES ('medium', 11, 30);
 INSERT INTO ROOM_SIZES (RSZ_type, RSZ_seat_min, RSZ_seat_max)
 VALUES ('large', 31, 90);
 COMMIT WORK;
+
+-- Add universities:
 
 INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
 VALUES (0, 'None', 0);
@@ -86,6 +96,8 @@ INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
 VALUES (9, 'Wojskowa Akkdemia Techniczna', 1);
 COMMIT WORK;
 
+-- Add companies:
+
 INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
 VALUES (1, 'Deloitte', '21-435 Warszawa', '532654424', 'deloitte@example.com');
 INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
@@ -102,9 +114,7 @@ INSERT INTO COMPANIES (COM_id, COM_name, COM_address, COM_tel, COM_email)
 VALUES (7, 'MI5', '99-007 Londyn', '007007007', 'hq@topsecret.co.uk');
 COMMIT WORK;
 
-
 -- Add speakers:
--- @pczek [todo] add more
 
 SET TRANSACTION NAME 'ADD_SPEAKER__TOMASZ_KOWAL';		-- begin named transaction
 INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
@@ -127,9 +137,28 @@ INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_c
 VALUES (PERSONS_SEQ.currval, 3, 6, 2, 2);
 COMMIT WORK; 
 
+SET TRANSACTION NAME 'ADD_SPEAKER__PIOTR_PAN';
+INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
+VALUES (PERSONS_SEQ.nextval, 'Piotr', 'Pan', '675893829', 'jp.100@example.com');
+INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_company)
+VALUES (PERSONS_SEQ.currval, 7, 10, 4, 4);
+COMMIT WORK;
+
+SET TRANSACTION NAME 'ADD_SPEAKER__JAMES_BOND';
+INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
+VALUES (PERSONS_SEQ.nextval, 'James', 'Bond', '007007007', 'james.bond@topsecret.co.uk');
+INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_company)
+VALUES (PERSONS_SEQ.currval, 10, 55, 2, 7);
+COMMIT WORK;
+
+SET TRANSACTION NAME 'ADD_SPEAKER__GALL_ANONIM';
+INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
+VALUES (PERSONS_SEQ.nextval, 'Gall', 'Anonim', '500659302', 'nobody@example.com');
+INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_company)
+VALUES (PERSONS_SEQ.currval, 8, 2, 11, 6);
+COMMIT WORK;
 
 -- Add students: 
--- @pczek [todo] add more
 
 SET TRANSACTION NAME 'ADD_STUDENT__TOMASZ_NOWAK';
 INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
@@ -152,8 +181,28 @@ INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_nu
 VALUES (PERSONS_SEQ.currval, 'EiTI', 3, 'Informatyka', '123456', null, 1);
 COMMIT WORK; 
 
+SET TRANSACTION NAME 'ADD_STUDENT__WIKTOR_TRAKTOR';
+INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
+VALUES (PERSONS_SEQ.nextval, 'Wiktor', 'Traktor', '345958009', 'w.traktor@example.com');
+INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
+VALUES (PERSONS_SEQ.currval, 'SiMR', 1, 'Mechatronika pojazdow', '584930', 'Ciagniki', 1);
+COMMIT WORK; 
 
--- ================
+SET TRANSACTION NAME 'ADD_STUDENT__JAN_PAN';
+INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
+VALUES (PERSONS_SEQ.nextval, 'Karol', 'Janiszek', '730385483', 'jp.100@example.com');
+INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
+VALUES (PERSONS_SEQ.currval, 'Odlewnictwo', 2, 'Dzwony', '459834', null, 8);
+COMMIT WORK; 
+
+SET TRANSACTION NAME 'ADD_STUDENT__TOMASZ_WAS';
+INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
+VALUES (PERSONS_SEQ.nextval, 'Tomasz', 'Was', '506098478', 'noshave@example.com');
+INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
+VALUES (PERSONS_SEQ.currval, 'Elektryczny', 5, 'Urzadzenia elektryczne', '250987', 'Golarki', 5);
+COMMIT WORK; 
+
+-- Add LCs:
 
 INSERT INTO LOCAL_COMMITTEES (LC_id, LC_tel, LC_email, LC_uni)
 VALUES (1, '324435466', 'com1@example.com', 1);
@@ -167,15 +216,23 @@ INSERT INTO LOCAL_COMMITTEES (LC_id, LC_tel, LC_email, LC_uni)
 VALUES (5, '238975433', 'com5@example.com', 5);
 COMMIT WORK;
 
--- @pczek [todo] add more
+-- Connect LCs with contacted companies:
+
 INSERT INTO CONTACTS (LC_id, COM_id)
 VALUES (1, 1);
 INSERT INTO CONTACTS (LC_id, COM_id)
 VALUES (1, 2);
 INSERT INTO CONTACTS (LC_id, COM_id)
 VALUES (2, 3); 
+INSERT INTO CONTACTS (LC_id, COM_id)
+VALUES (2, 4); 
+INSERT INTO CONTACTS (LC_id, COM_id)
+VALUES (3, 5); 
+INSERT INTO CONTACTS (LC_id, COM_id)
+VALUES (4, 6); 
+INSERT INTO CONTACTS (LC_id, COM_id)
+VALUES (1, 7); 
 COMMIT WORK; 
-
 
 -- Add workshops:
 
@@ -220,23 +277,51 @@ INSERT INTO LEADS (SPK_id, WS_id)
 VALUES (1, 3);
 COMMIT WORK;
 
+INSERT INTO LEADS (SPK_id, WS_id)
+VALUES (4, 3);
+COMMIT WORK;
+
+INSERT INTO LEADS (SPK_id, WS_id)
+VALUES (5, 5);
+COMMIT WORK;
+
+INSERT INTO LEADS (SPK_id, WS_id)
+VALUES (6, 4);
+COMMIT WORK;
+
 
 -- Enroll students for workshops:
 -- NOTE: For this to work, insertions into the PERSONS table must be executed in the order presented in this script,
 --       with the sequence in state past 3 references to nextval (next value = 4, increment = 1) before the first insert  !!!
 
 INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (4, 2);
+VALUES (7, 2);
 COMMIT WORK;
 
 INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (5, 3);
+VALUES (7, 3);
 COMMIT WORK;
 
 INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (5, 1);
+VALUES (8, 1);
 COMMIT WORK;
 
 INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (6, 2);
+VALUES (9, 2);
+COMMIT WORK;
+
+INSERT INTO ATTENDS (STUD_ID, WS_ID)
+VALUES (10, 5);
+COMMIT WORK;
+
+INSERT INTO ATTENDS (STUD_ID, WS_ID)
+VALUES (11, 5);
+COMMIT WORK;
+
+INSERT INTO ATTENDS (STUD_ID, WS_ID)
+VALUES (12, 4);
+COMMIT WORK;
+
+INSERT INTO ATTENDS (STUD_ID, WS_ID)
+VALUES (11, 3);
 COMMIT WORK;
