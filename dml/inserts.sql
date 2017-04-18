@@ -94,6 +94,8 @@ INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
 VALUES (8, 'Akademia Gorniczo-Hutnicza', 2);
 INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
 VALUES (9, 'Wojskowa Akkdemia Techniczna', 1);
+INSERT INTO UNIVERSITIES (UNI_id, UNI_name, UNI_city)
+VALUES (11, 'Politechnika Poznanska', 11);
 COMMIT WORK;
 
 -- Add companies:
