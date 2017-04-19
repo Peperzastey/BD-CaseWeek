@@ -199,7 +199,7 @@ COMMIT WORK;
 
 SET TRANSACTION NAME 'ADD_STUDENT__JAN_PAN';
 INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
-VALUES (PERSONS_SEQ.nextval, 'Karol', 'Janiszek', '730385483', 'jp.100@example.com');
+VALUES (PERSONS_SEQ.nextval, 'Jan', 'Pan', '749347023', 'lubie.dzwony@example.com');
 INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
 VALUES (PERSONS_SEQ.currval, 'Odlewnictwo', 2, 'Dzwony', '459834', null, 8);
 COMMIT WORK; 

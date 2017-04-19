@@ -15,3 +15,13 @@ LEFT JOIN LOCAL_COMMITTEES lc ON lc.LC_ID = cs.LC_ID
 LEFT JOIN UNIVERSITIES uni ON uni.UNI_ID = lc.LC_UNI
 WHERE lc.LC_ID < '4'
 ORDER BY comp.COM_NAME ASC, uni.UNI_NAME ASC;
+
+-- Select surname and name of speakers and number of students who attend workshops they lead
+-- Uses table joining via join conditions in WHERE clause
+SELECT p.P_SURNAME AS "Speaker's surname", p.P_NAME AS "Speaker's name", COUNT(*) AS "Number of attendees"
+FROM SPEAKERS sp, PERSONS p, LEADS l, ATTENDS a
+WHERE sp.SPK_ID = l.SPK_ID AND l.WS_ID = a.WS_ID AND sp.SPK_ID = p.P_ID
+GROUP BY p.P_SURNAME, p.P_NAME
+ORDER BY p.P_SURNAME, p.P_NAME;
+
+-- @rzastey [TODO] Add selects with subquery in FROM and WHERE clauses
