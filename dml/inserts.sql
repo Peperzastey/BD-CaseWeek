@@ -149,7 +149,7 @@ SET TRANSACTION NAME 'ADD_SPEAKER__PIOTR_PAN';
 INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
 VALUES (PERSONS_SEQ.nextval, 'Piotr', 'Pan', '675893829', 'jp.100@example.com');
 INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_company)
-VALUES (PERSONS_SEQ.currval, 7, 10, 4, 4);
+VALUES (PERSONS_SEQ.currval, 7, 11, 4, 4);
 COMMIT WORK;
 
 SET TRANSACTION NAME 'ADD_SPEAKER__JAMES_BOND';
