@@ -46,7 +46,11 @@ CREATE TABLE PERSONS (
 	P_tel				VARCHAR2 (20 BYTE) NOT NULL,
 	P_email				VARCHAR2 (50 BYTE) NOT NULL,
 	
-	CONSTRAINT PERSONS_PK PRIMARY KEY (P_id)
+	CONSTRAINT PERSONS_PK PRIMARY KEY (P_id),
+    
+    -- check constraints
+    CONSTRAINT PERSONS_TEL_CHK   CHECK (REGEXP_LIKE(P_tel, '^[[:digit:]]{9}$')),  -- 9 digits
+    CONSTRAINT PERSONS_EMAIL_CHK CHECK (P_email LIKE '%@%')                       -- any string containing the '@' character
 );
 
 CREATE TABLE UNIVERSITIES (
