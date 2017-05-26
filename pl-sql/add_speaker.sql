@@ -14,7 +14,7 @@ IS
 BEGIN
     -- transaction_name := 'ADD_SPEAKER__' || upper(name) || '_' || upper(surname);
 
-    dbms_output.put_line('Add_speaker :: ' || upper(name) || ' ' || upper(surname));
+    dbms_output.put_line('Add_speaker :: ' || name || ' ' || surname);
 
     -- SET TRANSACTION NAME transaction_name;
     id := PERSONS_SEQ.nextval;

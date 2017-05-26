@@ -1,28 +1,3 @@
-/*
-SET TRANSACTION NAME 'ADD_STUDENT__MARIUSZ_NALECZ';
-INSERT INTO PERSONS (P_id, P_name, P_surname, P_tel, P_email)
-VALUES (PERSONS_SEQ.nextval, 'Mariusz', 'Nalecz', '374632111', 'm.nalecz@example.com');
-INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_num, STUD_specialization, STUD_uni)
-VALUES (PERSONS_SEQ.currval, 'EiTI', 3, 'Informatyka', '423123', null, 1);
-COMMIT WORK;
-
-STUD_id				NUMBER NOT NULL,
-	STUD_faculty		VARCHAR2 (100 CHAR) NOT NULL,
-	STUD_year			NUMBER (2) NOT NULL,
-	STUD_major			VARCHAR2 (100 CHAR) NOT NULL,
-	STUD_book_num		VARCHAR2 (20 BYTE) NOT NULL,
-	STUD_specialization	VARCHAR2 (200),
-	STUD_uni			NUMBER (3) NOT NULL,
-    
-CREATE TABLE PERSONS (
-	P_id				NUMBER NOT NULL,
-	P_name				VARCHAR2 (100 CHAR) NOT NULL,
-	P_surname			VARCHAR2 (100 CHAR) NOT NULL,
-	P_tel				VARCHAR2 (20 BYTE) NOT NULL,
-	P_email				VARCHAR2 (50 BYTE) NOT NULL,
-*/
-
-
 CREATE OR REPLACE PROCEDURE add_student (
     name        IN VARCHAR2,
     surname     IN VARCHAR2,
@@ -37,15 +12,9 @@ CREATE OR REPLACE PROCEDURE add_student (
 )
 IS
     id          NUMBER;
-    -- transaction_name VARCHAR2 (50 CHAR);
 BEGIN
-    -- TODO capitalize name and surname for transaction name
-    -- transaction_name := 'ADD_STUDENT__' || name || '_' || surname;
-
     dbms_output.put_line('Add_student :: ' || name || ' ' || surname);
 
-    -- SET TRANSACTION NAME transaction_name;
-    -- COMMIT WORK; -- end previous transaction (if any) -- is it needed?
     id := PERSONS_SEQ.nextval;
     
     add_person(name, surname, tel_number, email, id);
