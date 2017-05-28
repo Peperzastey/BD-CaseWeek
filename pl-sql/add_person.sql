@@ -20,6 +20,6 @@ EXCEPTION
         dbms_output.put_line('Exception: Attempted to insert duplicate UNIQUE value. The tuple was not inserted into the PERSONS table.');
         RAISE; -- reraise current exception (exception name is optional)
         
-    -- catch if constraints not met by user-provided data
+    -- TODO catch if constraints not met by user-provided data
 
 END add_person;

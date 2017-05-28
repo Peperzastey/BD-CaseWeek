@@ -28,6 +28,7 @@ EXCEPTION
     WHEN OTHERS THEN
         dbms_output.put_line('Exception: ... Could not add the new student.');  -- TODO - more info
         ROLLBACK WORK;
-    -- catch if constraints not met by user-provided data
+        RAISE;
+    -- TODO catch if constraints not met by user-provided data
 
 END add_student;

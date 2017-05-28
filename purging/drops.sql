@@ -4,6 +4,10 @@ DROP TRIGGER PERSONS_AUTONR_TRG;
 
 DROP TRIGGER WORKSHOPS_AUTONR_TRG;
 
+DROP TRIGGER PERSONS_TEL_CONVERT_TRG;
+
+-- DROP PACKAGE CASEWEEK;   -- drop both the body and specification of the package
+
 
 -- Procedures:
 
