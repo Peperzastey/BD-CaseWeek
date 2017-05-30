@@ -2,6 +2,7 @@ package jdbc;
 
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.Scanner;
 
 /**
  * CaseWeek database project for BD classes at WUT.  
@@ -30,16 +31,15 @@ public class CaseWeekJDBC {
 		String myQuery = "";
 		
 		try {
-			conn = java.sql.DriverManager.getConnection("jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf", "mkedzie4", "mkedzie4");
+			conn = java.sql.DriverManager.getConnection("jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf", "---", "---");
 			state = conn.createStatement();
 		} catch (java.sql.SQLException exp) {
 			System.err.println("Error while connecting to database.");
 		}
 
-		myQuery = "SELECT * FROM cities";
-		
-		
-		printQuery(state, myQuery);
+//		myQuery = "SELECT * FROM cities";		
+//		printQuery(state, myQuery);
+		simpleQuery(state);
 		
 		try{
 			conn.close();
@@ -48,7 +48,7 @@ public class CaseWeekJDBC {
 		}
 		
 		
-		System.out.println("powerdb");
+		System.out.println("Finished");
 	}
 
 	public static void printQuery(Statement state, String query) {
@@ -76,5 +76,16 @@ public class CaseWeekJDBC {
 		}
 	}
 	
+	
+	public static void simpleQuery(Statement state) {
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("What do you want to select? ");
+		String toSelect = keyboard.next();
+		System.out.println("From which table? ");
+		String toFrom = keyboard.next();
+		printQuery(state, "SELECT " + toSelect + " FROM " + toFrom);
+		keyboard.close();
+		
+	}
 	
 }
