@@ -65,7 +65,7 @@ EXCEPTION
     -- TODO catch if constraints not met by user-provided data
 
 END add_speaker;
-
+/
 -- Procedure that adds student to database
 CREATE OR REPLACE PROCEDURE add_student (
     name        IN VARCHAR2,
