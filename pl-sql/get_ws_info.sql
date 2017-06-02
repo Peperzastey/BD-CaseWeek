@@ -1,5 +1,4 @@
--- Displays name, company and the most experienced speaker of selected workshop
-
+-- Procedure that displays name, company and the most experienced speaker of selected workshop
 CREATE OR REPLACE PROCEDURE get_WS_logistics_info(
 id IN number
 )
