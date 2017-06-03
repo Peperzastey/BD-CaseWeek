@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE BODY pkg AS
+CREATE OR REPLACE PACKAGE BODY WSPKG AS
     -- Procedure that displays name, company and the most experienced speaker of selected workshop
     PROCEDURE get_WS_logistics_info(
     id IN number
