@@ -228,19 +228,18 @@ BEGIN
 END WORKSHOPS_AUTONR_TRG;
 /
 
-CREATE OR REPLACE TRIGGER PERSONS_TEL_CONVERT_TRG
-  BEFORE INSERT OR UPDATE OF P_tel ON PERSONS
-  FOR EACH ROW
-DECLARE
+CREATE OR REPLACE PROCEDURE CONVERT_TEL (
+    tel IN OUT VARCHAR2
+)
+IS
   wrong_tel_format EXCEPTION;
 BEGIN
-  IF REGEXP_LIKE(:new.P_tel, '^\d{3}[- ]\d{3}[- ]\d{3}$') THEN
-    :new.P_tel := REGEXP_REPLACE(:new.P_tel, '[- ]'); -- remove all matched patterns
-    
-    dbms_output.put_line('Tel_convert_TRG: new tel number: ' || :new.P_tel || ' will be added.');
-    
+  IF REGEXP_LIKE(tel, '^\d{3}[- ]\d{3}[- ]\d{3}$') THEN
+    tel := REGEXP_REPLACE(tel, '[- ]'); -- remove all matched patterns  
     -- the first position in the string is 1 (not 0)
-  ELSIF REGEXP_LIKE(:new.P_tel, '^\d{9}$') THEN
+    dbms_output.put_line('CONVERT_TEL: tel converted to: ' || tel || '.');
+    
+  ELSIF REGEXP_LIKE(tel, '^\d{9}$') THEN
     NULL;   -- do not change the tel number
   ELSE
     RAISE wrong_tel_format;
@@ -254,6 +253,40 @@ EXCEPTION
       ddd ddd ddd');
     -- ROLLBACK WORK;
     RAISE;
+END CONVERT_TEL;
+/
 
+CREATE OR REPLACE TRIGGER PERSONS_TEL_CONVERT_TRG
+  BEFORE INSERT OR UPDATE OF P_tel ON PERSONS
+  FOR EACH ROW
+BEGIN
+  CONVERT_TEL(:new.P_tel);
+
+  -- do not catch exception
+  -- no inset or update will succeed if the passed tel has wrong format
+  
+  -- TODO catch user-defined exception and raise application error ?
 END PERSONS_TEL_CONVERT_TRG;
+/
+
+CREATE OR REPLACE TRIGGER COMPANIES_TEL_CONVERT_TRG
+  BEFORE INSERT OR UPDATE OF COM_tel ON COMPANIES
+  FOR EACH ROW
+BEGIN
+  CONVERT_TEL(:new.COM_tel);
+
+  -- do not catch exception
+  -- no inset or update will succeed if the passed tel has wrong format
+END COMPANIES_TEL_CONVERT_TRG;
+/
+
+CREATE OR REPLACE TRIGGER LC_TEL_CONVERT_TRG
+  BEFORE INSERT OR UPDATE OF LC_tel ON LOCAL_COMMITTEES
+  FOR EACH ROW
+BEGIN
+  CONVERT_TEL(:new.LC_tel);
+
+  -- do not catch exception
+  -- no inset or update will succeed if the passed tel has wrong format
+END LC_TEL_CONVERT_TRG;
 /
