@@ -166,6 +166,7 @@ INSERT INTO SPEAKERS (SPK_id, SPK_degree, SPK_years_of_exp, SPK_graduated, SPK_c
 VALUES (PERSONS_SEQ.currval, 8, 2, 11, 6);
 COMMIT WORK;
 
+EXECUTE generate_speakers(200);
 
 -- Add students: 
 
@@ -211,6 +212,7 @@ INSERT INTO STUDENTS (STUD_id, STUD_faculty, STUD_year, STUD_major, STUD_book_nu
 VALUES (PERSONS_SEQ.currval, 'Elektryczny', 5, 'Urzadzenia elektryczne', '250987', 'Golarki', 5);
 COMMIT WORK; 
 
+EXECUTE generate_students(200);
 
 -- Add LCs:
 
@@ -268,72 +270,76 @@ INSERT INTO WORKSHOPS (WS_name, WS_date, WS_group_qty, WS_room_setting, WS_organ
 VALUES ('Bezpieczenstwo sieci i systemow', TO_DATE('2-04-25', 'DD-MM-YY'), 18, 4, 4, 'medium');
 COMMIT WORK;
 
+--EXECUTE generate_workshops(200);
 
 -- Assign speakers to lead given workshops:
 -- NOTE: For this to work, insertions into the PERSONS table (when inserting into SPEAKERS) must be executed in the order presented in this script,
 --       with the sequence in its initial state (initial value = 1, increment = 1) before the first insert  !!!
 
-INSERT INTO LEADS (SPK_id, WS_id)
-VALUES (1, 1);
-COMMIT WORK;
+--INSERT INTO LEADS (SPK_id, WS_id)
+--VALUES (1, 1);
+--COMMIT WORK;
+--
+--INSERT INTO LEADS (SPK_id, WS_id)
+--VALUES (2, 2);
+--COMMIT WORK;
+--
+--INSERT INTO LEADS (SPK_id, WS_id)
+--VALUES (3, 2);
+--COMMIT WORK;
+--
+--INSERT INTO LEADS (SPK_id, WS_id)
+--VALUES (1, 3);
+--COMMIT WORK;
+--
+--INSERT INTO LEADS (SPK_id, WS_id)
+--VALUES (4, 3);
+--COMMIT WORK;
+--
+--INSERT INTO LEADS (SPK_id, WS_id)
+--VALUES (5, 5);
+--COMMIT WORK;
+--
+--INSERT INTO LEADS (SPK_id, WS_id)
+--VALUES (6, 4);
+--COMMIT WORK;
 
-INSERT INTO LEADS (SPK_id, WS_id)
-VALUES (2, 2);
-COMMIT WORK;
-
-INSERT INTO LEADS (SPK_id, WS_id)
-VALUES (3, 2);
-COMMIT WORK;
-
-INSERT INTO LEADS (SPK_id, WS_id)
-VALUES (1, 3);
-COMMIT WORK;
-
-INSERT INTO LEADS (SPK_id, WS_id)
-VALUES (4, 3);
-COMMIT WORK;
-
-INSERT INTO LEADS (SPK_id, WS_id)
-VALUES (5, 5);
-COMMIT WORK;
-
-INSERT INTO LEADS (SPK_id, WS_id)
-VALUES (6, 4);
-COMMIT WORK;
-
+EXECUTE generate_leads(2);
 
 -- Enroll students for workshops:
 -- NOTE: For this to work, insertions into the PERSONS table (when inserting into STUDENTS) must be executed in the order presented in this script,
 --       with the sequence in state past 6 references to nextval (next value = 7, increment = 1) before the first insert  !!!
 
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (7, 2);
-COMMIT WORK;
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (7, 2);
+--COMMIT WORK;
+--
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (7, 3);
+--COMMIT WORK;
+--
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (8, 1);
+--COMMIT WORK;
+--
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (9, 2);
+--COMMIT WORK;
+--
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (10, 5);
+--COMMIT WORK;
+--
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (11, 5);
+--COMMIT WORK;
+--
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (12, 4);
+--COMMIT WORK;
+--
+--INSERT INTO ATTENDS (STUD_ID, WS_ID)
+--VALUES (11, 3);
+--COMMIT WORK;
 
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (7, 3);
-COMMIT WORK;
-
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (8, 1);
-COMMIT WORK;
-
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (9, 2);
-COMMIT WORK;
-
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (10, 5);
-COMMIT WORK;
-
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (11, 5);
-COMMIT WORK;
-
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (12, 4);
-COMMIT WORK;
-
-INSERT INTO ATTENDS (STUD_ID, WS_ID)
-VALUES (11, 3);
-COMMIT WORK;
+EXECUTE generate_attendances(3);
